@@ -36,7 +36,7 @@
 	    	return $resultArray;
 	    }
 	    
-	    /*  Main */
+	    /*  Main  */
 	     
 	    public function callTodayDoing( $resultSet  ){
 	        $resultArray = array();
@@ -67,7 +67,7 @@
 	        return $resultArray;
 	    }
 		
-		/* Timetable */
+		/*  Timetable  */
 		
 		public function callTimetables( $resultSet  ){
 	        $resultArray = array();
@@ -99,6 +99,49 @@
 						"day_of_week"=>$rs['day_of_week'],
 						"color"=>$rs['color'],
 						"memo"=>$rs['memo']
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
+		/*  Crew  */
+		
+		public function callCrewName( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"name"=>rs['name']
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
+		public function callCrewList( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"name"=>rs['A.name'],
+						"label"=>rs['A.label']
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
+		public function callNotice( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"title"=>rs['title'],
+						"importance"=>rs['importance']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
