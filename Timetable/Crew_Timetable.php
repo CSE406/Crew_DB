@@ -5,22 +5,21 @@
 	$Crew_DB = new Crew_DB();
 	
 	$query = $_REQUEST['query'];
-	$user_id = $_REQUEST['user_id'];
-	$day_of_week = $_REQUEST['day_of_week'];
+	$groups_id = $_REQUEST['groups_id'];
 	
 // 	error_reporting(E_ALL);
 // 	ini_set("display_errors", 1);
 
-	if ($query == "callTodayDoing") {
+	if ($query == "showCrewTimetables") {
 	
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
-				" SELECT title, start_time, end_time
+				" SELECT title, start_time, end_time, DATE_FORMAT(start_time, '%W'), DATE_FORMAT(end_time, '%W')
 				  FROM timetable
-				  WHERE user_id = '".$user_id."' AND day_of_week = '".$day_of_week."' 
+				  WHERE groups_id = '".$groups_id."'
 				  ORDER BY start_time ASC"
 		);
-		print_r(  json_encode( $Crew_DB->callTodayDoing( $resultSet ) ) );
+		print_r(  json_encode( $Crew_DB->showCrewTimetables( $resultSet ) ) );
 	}
-
+	
 ?>

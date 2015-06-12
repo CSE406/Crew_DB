@@ -4,8 +4,8 @@
 	    
 	    function getConnection(){
 
-	    	$connectionString =mysql_connect("166.104.245.89:3306", "root", "root");
-	        mysql_select_db("crew", $connectionString);
+	    	$connectionString =mysql_connect("127.0.0.1:3306", "root", "root");
+	        mysql_select_db("Crew", $connectionString);
 	         
 	        mysql_query("set session character_set_connection=utf8;");
 	        mysql_query("set session character_set_results=utf8;");
@@ -43,7 +43,7 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
-						"title"=>$rs['title']
+						"title"=>$rs['title'],
 						"start_time"=>$rs['start_time'],
 						"end_time"=>$rs['end_time']
 	               );
@@ -58,8 +58,8 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
-						"groups_name"=>$rs['A.groups_name']
-						"message"=>$rs['A.message']
+						"groups_name"=>$rs['groups_name'],
+						"message"=>$rs['message']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
@@ -106,6 +106,23 @@
 	        return $resultArray;
 	    }
 		
+		public function showCrewTimetables( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"title"=>$rs['title'],
+						"start_time"=>$rs['start_time'],
+						"end_time"=>$rs['end_time'],
+						"start_day"=>$rs['DATE_FORMAT(start_time, \'%W\')'],
+						"end_day"=>$rs['DATE_FORMAT(start_time, \'%W\')'],
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
 		/*  Crew  */
 		
 		public function callCrewName( $resultSet  ){
@@ -126,8 +143,8 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
-						"name"=>rs['A.name'],
-						"label"=>rs['A.label']
+						"name"=>rs['name'],
+						"label"=>rs['label']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
@@ -148,13 +165,43 @@
 	        }
 	        return $resultArray;
 	    }
+		
+		public function showMembers( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"name"=>rs['name'],
+						"power"=>rs['power']
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
+		public function showDoing( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"title"=>$rs['title'],
+						"start_time"=>$rs['start_time'],
+						"memo"=>$rs['memo']
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
 	    
 	    /*  Common  */
 	    
 	    public function Response( $resultSet  ){
 	    
 	    	$resultArray = array();
-			$rs = mysql_fetch_array($resultSet)
+			$rs = mysql_fetch_array($resultSet);
 	    	if($rs) {
 	    		$arrayMiddle = array(
 	    				"result"=>true

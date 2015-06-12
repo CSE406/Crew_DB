@@ -1,6 +1,6 @@
 <?php 
 	header("Content-type: text/html; charset=utf-8");
-	include('./DBHandler.php');
+	include('../Database/DBHandler.php');
 
 	$Crew_DB = new Crew_DB();
 	
@@ -20,6 +20,17 @@
 				  WHERE id = '".$groups_id."' "
 		);
 		print_r(  json_encode( $Crew_DB->callCrewName( $resultSet ) ) );
+	}
+	
+	else if($query == "showDoing") {
+		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
+
+				" SELECT title, start_time, memo
+				  FROM group_timetable
+				  WHERE groups_id = '".$groups_id."' AND DATE_FORMAT(start_time, '%W %M %Y') = DATE_FORMAT('".$day_of_week."', '%W %M %Y )
+				  ORDER BY start_time ASC"
+		);
+		print_r(  json_encode( $Crew_DB->showDoing( $resultSet ) ) );
 	}
 	
 	else if ($query == "callNotice") {

@@ -1,33 +1,46 @@
 <?php 
 	header("Content-type: text/html; charset=utf-8");
-	include('./DBHandler.php');
+	include('../Database/DBHandler.php');
 
 	$Crew_DB = new Crew_DB();
 	
 	$query = $_REQUEST['query'];
-	$facebook_id = $_REQUEST['facebookId'];
+	$user_id = $_REQUEST['user_id'];
+	$name = $_REQUEST['name'];
+	$label = $_REQUEST['label'];
+	$memo = $_REQUEST['memo'];
+	
 
-	if ($query == "insertUser") {
+	if ($query == "makeCrew") {
 	
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
-				" INSERT INTO user (fb_id, email, name)
-			      SELECT '$facebook_id, $email, $name' FROM DUAL
-				  WHERE NOT EXISTS (SELECT * FROM user WHERE fb_id='$facebook_id') "
+				" INSERT 
+				  INTO groups 
+				  (name, master_id, label, memo)
+			      VALUES ('".$name."', '".$user_id."', '".$label."', '".$memo."' ) "
 				
 		);
 		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
 		
-	} else if ($query == "searchUser") {
-	
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
-				" SELECT id
-				  FROM user
-				  WHERE fb_id = '$facebook_id' "
-				
+				" INSERT 
+				  INTO group_member
+				  (groups_id, user_id)
+			      SELECT id, master_id
+				  FROM groups
+				  WHERE master_id = '".$user_id."' ) "
 		);
-		print_r(  json_encode( $Crew_DB->selectUserId( $resultSet ) ) );
-	} 
-	
+		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
+		
+		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
+				
+				" UPDATE
+				  group_member
+				  SET power = '2'
+				  WHERE user_id = '".$user_id."' ) "
+		);
+		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
+	}
 ?>

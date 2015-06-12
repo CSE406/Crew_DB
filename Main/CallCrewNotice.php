@@ -1,6 +1,6 @@
 <?php 
 	header("Content-type: text/html; charset=utf-8");
-	include('./DBHandler.php');
+	include('../Database/DBHandler.php');
 
 	$Crew_DB = new Crew_DB();
 	
