@@ -6,40 +6,39 @@
 	
 	$query = $_REQUEST['query'];
 	$user_id = $_REQUEST['user_id'];
-	$name = $_REQUEST['name'];
-	$label = $_REQUEST['label'];
-	$memo = $_REQUEST['memo'];
+	$groups_id = $REQUEST['groups_id'];
 	
 
-	if ($query == "makeC") {
+	if ($query == "checkCL") {
 	
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
-				" INSERT 
-				  INTO groups 
-				  (name, master_id, label, memo)
-			      VALUES ('".$name."', '".$user_id."', '".$label."', '".$memo."' ) "
+				" SELECT *
+				  FROM group_member 
+				  WHERE user_id = '".$user_id."' AND groups_id = '".$groups_id."' AND power = '2' "
 				
 		);
 		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
+	}
+	
+	else if($query == "ChangeName") {		
+		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
+				
+				" UPDATE 
+				  groups
+			      SET name = '".$name."'
+				  WHERE id = '".$groups_id."' "
+		);
+		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
+	}
+	
+	else if($query == "deleteCrew") {
 		
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
-				" INSERT 
-				  INTO group_member
-				  (groups_id, user_id)
-			      SELECT id, master_id
+				" DELETE
 				  FROM groups
-				  WHERE master_id = '".$user_id."' "
-		);
-		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
-		
-		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
-				
-				" UPDATE
-				  group_member
-				  SET power = '2'
-				  WHERE user_id = '".$user_id."' "
+				  WHERE id = '".$groups_id."' "
 		);
 		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
 	}

@@ -10,10 +10,10 @@
 // 	error_reporting(E_ALL);
 // 	ini_set("display_errors", 1);
 
-	if ($query == "showMembers") {
+	if ($query == "showM") {
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
-				" SELECT B.name, A.power
+				" SELECT B.name, A.power, B.email
 				  FROM group_member AS A
 				  JOIN user AS B
 				  ON A.user_id = B.id

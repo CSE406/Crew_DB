@@ -21,5 +21,4 @@
 		);
 		print_r(  json_encode( $Crew_DB->showCrewTimetables( $resultSet ) ) );
 	}
-	
 ?>

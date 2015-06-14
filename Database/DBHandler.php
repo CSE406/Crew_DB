@@ -115,13 +115,48 @@
 						"start_time"=>$rs['start_time'],
 						"end_time"=>$rs['end_time'],
 						"start_day"=>$rs['DATE_FORMAT(start_time, \'%W\')'],
-						"end_day"=>$rs['DATE_FORMAT(start_time, \'%W\')'],
+						"end_day"=>$rs['DATE_FORMAT(end_time, \'%W\')'],
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
 	        }
 	        return $resultArray;
 	    }
+		
+		public function showModifyCrewTimetable( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"groups_id"=>rs['groups_id'],
+						"timetable_id"=>rs['timetable_id'],
+						"title"=>$rs['title'],
+						"start_time"=>$rs['start_time'],
+						"end_time"=>$rs['end_time'],
+						"memo"=>$rs['memo']
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
+		public function callNameList( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"groups_id"=>$rs['A.id'],
+						"name"=>$rs['A.name']
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
+		
+		
 		
 		/*  Crew  */
 		
@@ -172,7 +207,8 @@
 	        	
 	            $arrayMiddle = array(
 						"name"=>rs['name'],
-						"power"=>rs['power']
+						"power"=>rs['power'],
+						"email"=>rs['email']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
@@ -180,13 +216,13 @@
 	        return $resultArray;
 	    }
 		
-		public function showDoing( $resultSet  ){
+		public function showCrewDoing( $resultSet  ){
 	        $resultArray = array();
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
 						"title"=>$rs['title'],
-						"start_time"=>$rs['start_time'],
+						"start_time"=>$rs['DATE_FORMAT(start_time, \'%H:%i\')'],
 						"memo"=>$rs['memo']
 	               );
 	             
@@ -194,6 +230,46 @@
 	        }
 	        return $resultArray;
 	    }
+		
+		public function showInformationCrew( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"name"=>$rs['name'],
+						"label"=>$rs['label'],
+						"master_id"=>$rs['master_id'],
+						"memo"=>$rs['memo']
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
+		
+		
+		
+		/*  Notice  */
+		
+		public function showMN( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"notice_id"=>$rs['id'],
+						"title"=>$rs['title'],
+						"importance"=>$rs['importance'],
+						"message"=>$rs['message']
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
+		
+		
 		
 	    
 	    /*  Common  */

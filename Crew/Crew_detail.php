@@ -25,12 +25,12 @@
 	else if($query == "showDoing") {
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 
-				" SELECT title, start_time, memo
+				" SELECT title, DATE_FORMAT(start_time, '%H:%i'), memo
 				  FROM group_timetable
-				  WHERE groups_id = '".$groups_id."' AND DATE_FORMAT(start_time, '%W %M %Y') = DATE_FORMAT('".$day_of_week."', '%W %M %Y )
+				  WHERE groups_id = '".$groups_id."' AND DATE_FORMAT(start_time, '%Y-%m-%d') = CURDATE()
 				  ORDER BY start_time ASC"
 		);
-		print_r(  json_encode( $Crew_DB->showDoing( $resultSet ) ) );
+		print_r(  json_encode( $Crew_DB->showCrewDoing( $resultSet ) ) );
 	}
 	
 	else if ($query == "callNotice") {
