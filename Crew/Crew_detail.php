@@ -7,6 +7,7 @@
 	$query = $_REQUEST['query'];
 	$user_id = $_REQUEST['user_id'];
 	$groups_id = $_REQUEST['groups_id'];
+	$today = date("D");
 	
 // 	error_reporting(E_ALL);
 // 	ini_set("display_errors", 1);
@@ -27,7 +28,7 @@
 
 				" SELECT title, DATE_FORMAT(start_time, '%H:%i'), memo
 				  FROM group_timetable
-				  WHERE groups_id = '".$groups_id."' AND DATE_FORMAT(start_time, '%Y-%m-%d') = CURDATE()
+				  WHERE groups_id = $groups_id AND DATE_FORMAT(start_time, '%Y-%m-%d') = CURDATE()
 				  ORDER BY start_time ASC"
 		);
 		print_r(  json_encode( $Crew_DB->showCrewDoing( $resultSet ) ) );
