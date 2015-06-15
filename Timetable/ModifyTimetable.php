@@ -22,7 +22,7 @@
 		
 			" SELECT *
 			  FROM timetable
-			  WHERE user_id = '".$user_id."' AND id = '".$timetable_id."' "
+			  WHERE id = '".$timetable_id."' "
 		);
 		print_r(  json_encode( $Crew_DB->showModifyTimetable( $resultSet ) ) );
 	}

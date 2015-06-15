@@ -146,8 +146,8 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
-						"groups_id"=>$rs['A.id'],
-						"name"=>$rs['A.name']
+						"groups_id"=>$rs['id'],
+						"name"=>$rs['name']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);

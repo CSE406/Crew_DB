@@ -16,7 +16,7 @@
 	
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
-				" SELECT A.name, A.id
+				" SELECT A.name AS name, A.id AS id
 				  FROM groups AS A
 				  JOIN group_member AS B
 				  ON A.id = B.groups_id
