@@ -6,6 +6,7 @@
 	
 	$query = $_REQUEST['query'];
 	$user_id = $_REQUEST['user_id'];
+	$groups_id = $_REQUEST['groups_id'];
 	$name = $_REQUEST['name'];
 	$label = $_REQUEST['label'];
 	$memo = $_REQUEST['memo'];
@@ -25,12 +26,22 @@
 		
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
+				" SELECT id
+				  FROM groups 
+				  WHERE name = '$name' AND master_id = $user_id "
+				
+		);
+		print_r( json_encode( $Crew_DB->makeCheck( $resultSet ) ) );
+	}
+	else if ($query == "makeC2"){
+		
+		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
+				
 				" INSERT 
 				  INTO group_member
 				  (groups_id, user_id)
-			      SELECT id, master_id
-				  FROM groups
-				  WHERE master_id = '".$user_id."' "
+				  VALUES
+				  ($groups_id, $user_id)"
 		);
 		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
 		

@@ -178,6 +178,7 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
+						"id"=>$rs['id'],
 						"name"=>$rs['name'],
 						"label"=>$rs['label']
 	               );
@@ -247,6 +248,19 @@
 	        return $resultArray;
 	    }
 		
+		public function makeCheck( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"groups_id"=>$rs['id']
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
 		
 		
 		
@@ -277,8 +291,8 @@
 	    public function Response( $resultSet  ){
 	    
 	    	$resultArray = array();
-			$rs = mysql_fetch_array($resultSet);
-	    	if($rs) {
+
+	    	if($resultSet) {
 	    		$arrayMiddle = array(
 	    				"result"=>true
 	    		);

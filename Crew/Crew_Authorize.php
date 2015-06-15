@@ -17,7 +17,7 @@
 				" UPDATE 
 				  group_member 
 				  SET power = '1'
-				  WHERE user_id = '".$user_id."' AND groups_id = '".$groups_id."' "
+				  WHERE user_id = $user_id AND groups_id = $groups_id "
 				
 		);
 		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );

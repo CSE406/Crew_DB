@@ -12,9 +12,9 @@
 	
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
-				" SELECT *
+				" SELECT master_id, name, label, memo
 				  FROM groups 
-			      VALUES id = '".$groups_id."' "
+			      WHERE id = $groups_id "
 				
 		);
 		print_r( json_encode( $Crew_DB->showInformationCrew( $resultSet ) ) );
