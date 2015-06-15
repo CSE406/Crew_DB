@@ -91,8 +91,8 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
-						"user_id"=>rs['user_id'],
-						"timetable_id"=>rs['timetable_id'],
+						"user_id"=>$rs['user_id'],
+						"timetable_id"=>$rs['timetable_id'],
 						"title"=>$rs['title'],
 						"start_time"=>$rs['start_time'],
 						"end_time"=>$rs['end_time'],
@@ -128,8 +128,8 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
-						"groups_id"=>rs['groups_id'],
-						"timetable_id"=>rs['timetable_id'],
+						"groups_id"=>$rs['groups_id'],
+						"timetable_id"=>$rs['timetable_id'],
 						"title"=>$rs['title'],
 						"start_time"=>$rs['start_time'],
 						"end_time"=>$rs['end_time'],
@@ -165,7 +165,7 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
-						"name"=>rs['name']
+						"name"=>$rs['name']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
@@ -178,8 +178,8 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
-						"name"=>rs['name'],
-						"label"=>rs['label']
+						"name"=>$rs['name'],
+						"label"=>$rs['label']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
@@ -192,8 +192,8 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
-						"title"=>rs['title'],
-						"importance"=>rs['importance']
+						"title"=>$rs['title'],
+						"importance"=>$rs['importance']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
@@ -206,9 +206,9 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
-						"name"=>rs['name'],
-						"power"=>rs['power'],
-						"email"=>rs['email']
+						"name"=>$rs['name'],
+						"power"=>$rs['power'],
+						"email"=>$rs['email']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
