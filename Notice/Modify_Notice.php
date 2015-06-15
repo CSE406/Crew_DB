@@ -26,7 +26,7 @@
 		print_r(  json_encode( $Crew_DB->showMN( $resultSet ) ) );
 	}
 	
-	else if ($query == "svaeMN") {
+	else if ($query == "saveMN") {
 	
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
