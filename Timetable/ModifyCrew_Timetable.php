@@ -20,11 +20,9 @@
 	
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 		
-			" SELECT A.*
-			  FROM timetable AS A
-			  JOIN groups AS B
-			  ON A.groups_id = B.id
-			  WHERE B.master_id = '".$user_id."' AND A.id = '".$timetable_id."' "
+			" SELECT *
+			  FROM group_timetable
+			  WHERE id = '".$timetable_id."' "
 		);
 		print_r(  json_encode( $Crew_DB->showModifyCrewTimetable( $resultSet ) ) );
 	}
@@ -35,7 +33,7 @@
 		
 			" UPDATE group_timetable
 			  SET title = '".$title."', start_time = '".$start_time."', end_time = '".$end_time."', memo = '".$memo."'
-			  WHERE groups_id = '".$groups_id."' AND id = '".$timetable_id."' "
+			  WHERE id = '".$timetable_id."' "
 		);
 		print_r(  json_encode( $Crew_DB->Response( $resultSet ) ) );
 	}

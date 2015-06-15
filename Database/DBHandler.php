@@ -114,8 +114,8 @@
 						"title"=>$rs['title'],
 						"start_time"=>$rs['start_time'],
 						"end_time"=>$rs['end_time'],
-						"start_day"=>$rs['DATE_FORMAT(start_time, \'%W\')'],
-						"end_day"=>$rs['DATE_FORMAT(end_time, \'%W\')'],
+						"start_day"=>$rs['start_day'],
+						"end_day"=>$rs['end_day']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
@@ -129,7 +129,7 @@
 	        	
 	            $arrayMiddle = array(
 						"groups_id"=>$rs['groups_id'],
-						"timetable_id"=>$rs['timetable_id'],
+						"timetable_id"=>$rs['id'],
 						"title"=>$rs['title'],
 						"start_time"=>$rs['start_time'],
 						"end_time"=>$rs['end_time'],

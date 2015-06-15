@@ -2,8 +2,8 @@
 	header("Content-type: text/html; charset=utf-8");
 	include('../Database/DBHandler.php');
 
-	error_reporting(E_ALL);
- 	ini_set("display_errors", 1);
+	//error_reporting(E_ALL);
+ 	//ini_set("display_errors", 1);
 	
 	$Crew_DB = new Crew_DB();
 	
@@ -13,7 +13,7 @@
 	if ($query == "callCrewList") {
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
-				" SELECT A.name, A.label
+				" SELECT A.id, A.name, A.label
 				  FROM groups AS A
 				  JOIN group_member AS B
 				  ON A.id = B.groups_id

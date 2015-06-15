@@ -14,8 +14,8 @@
 	
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
-				" SELECT title, start_time, end_time, DATE_FORMAT(start_time, '%W'), DATE_FORMAT(end_time, '%W')
-				  FROM timetable
+				" SELECT title, start_time, end_time, DATE_FORMAT(start_time, '%W') AS start_day, DATE_FORMAT(end_time, '%W') AS end_day
+				  FROM group_timetable
 				  WHERE groups_id = '".$groups_id."'
 				  ORDER BY start_time ASC"
 		);
