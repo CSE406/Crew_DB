@@ -7,7 +7,7 @@
 	$query = $_REQUEST['query'];
 	$user_id = $_REQUEST['user_id'];
 	$master_id = $_REQUEST['master_id'];
-	$groups_id = $REQUEST['groups_id'];
+	$groups_id = $_REQUEST['groups_id'];
 	
 
 	if ($query == "giveCS") {

@@ -50,7 +50,7 @@
 				" UPDATE
 				  group_member
 				  SET power = '2'
-				  WHERE user_id = '".$user_id."' "
+				  WHERE user_id = '$user_id' "
 		);
 		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
 	}

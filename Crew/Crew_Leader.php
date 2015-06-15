@@ -6,7 +6,7 @@
 	
 	$query = $_REQUEST['query'];
 	$user_id = $_REQUEST['user_id'];
-	$groups_id = $REQUEST['groups_id'];
+	$groups_id = $_REQUEST['groups_id'];
 	$name = $_REQUEST['name'];
 	
 
@@ -39,7 +39,7 @@
 				
 				" DELETE
 				  FROM groups
-				  WHERE id = '".$groups_id."' "
+				  WHERE id = '$groups_id' "
 		);
 		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
 	}
