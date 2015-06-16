@@ -114,8 +114,8 @@
 						"title"=>$rs['title'],
 						"start_time"=>$rs['start_time'],
 						"end_time"=>$rs['end_time'],
-						"start_day"=>$rs['DATE_FORMAT(start_time, \'%W\')'],
-						"end_day"=>$rs['DATE_FORMAT(end_time, \'%W\')'],
+						"start_day"=>$rs['start_day'],
+						"end_day"=>$rs['end_day']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
@@ -129,7 +129,7 @@
 	        	
 	            $arrayMiddle = array(
 						"groups_id"=>$rs['groups_id'],
-						"timetable_id"=>$rs['timetable_id'],
+						"timetable_id"=>$rs['id'],
 						"title"=>$rs['title'],
 						"start_time"=>$rs['start_time'],
 						"end_time"=>$rs['end_time'],
@@ -146,8 +146,8 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
-						"groups_id"=>$rs['A.id'],
-						"name"=>$rs['A.name']
+						"groups_id"=>$rs['id'],
+						"name"=>$rs['name']
 	               );
 	             
 	            array_push($resultArray, $arrayMiddle);
@@ -178,7 +178,11 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
+<<<<<<< HEAD
 	           			"id"=>$rs['id'],
+=======
+						"id"=>$rs['id'],
+>>>>>>> origin/master
 						"name"=>$rs['name'],
 						"label"=>$rs['label']
 	               );
@@ -248,6 +252,19 @@
 	        return $resultArray;
 	    }
 		
+		public function makeCheck( $resultSet  ){
+	        $resultArray = array();
+	        while( $rs = mysql_fetch_array( $resultSet ) ){
+	        	
+	            $arrayMiddle = array(
+						"groups_id"=>$rs['id']
+	               );
+	             
+	            array_push($resultArray, $arrayMiddle);
+	        }
+	        return $resultArray;
+	    }
+		
 		
 		
 		
@@ -278,8 +295,8 @@
 	    public function Response( $resultSet  ){
 	    
 	    	$resultArray = array();
-			$rs = mysql_fetch_array($resultSet);
-	    	if($rs) {
+
+	    	if($resultSet) {
 	    		$arrayMiddle = array(
 	    				"result"=>true
 	    		);

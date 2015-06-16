@@ -24,6 +24,7 @@
 		
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
+<<<<<<< HEAD
 				" INSERT INTO group_member (groups_id, user_id)
 				  SELECT id, $user_id
 		  		   FROM groups 
@@ -31,6 +32,14 @@
 		  		   
 		);
 		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
+=======
+				" SELECT id
+				  FROM groups 
+				  WHERE name = '$name' AND master_id = $user_id "
+				
+		);
+		print_r( json_encode( $Crew_DB->makeCheck( $resultSet ) ) );
+>>>>>>> origin/master
 	}
 	else if ($query == "makeC2"){
 		

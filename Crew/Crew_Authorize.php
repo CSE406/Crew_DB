@@ -7,7 +7,7 @@
 	$query = $_REQUEST['query'];
 	$user_id = $_REQUEST['user_id'];
 	$master_id = $_REQUEST['master_id'];
-	$groups_id = $REQUEST['groups_id'];
+	$groups_id = $_REQUEST['groups_id'];
 	
 
 	if ($query == "giveCS") {
@@ -17,7 +17,7 @@
 				" UPDATE 
 				  group_member 
 				  SET power = '1'
-				  WHERE user_id = '".$user_id."' AND groups_id = '".$groups_id."' "
+				  WHERE user_id = $user_id AND groups_id = $groups_id "
 				
 		);
 		print_r( json_encode( $Crew_DB->Response( $resultSet ) ) );
