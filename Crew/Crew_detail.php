@@ -26,7 +26,7 @@
 	else if($query == "showDoing") {
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 
-				" SELECT title, DATE_FORMAT(start_time, '%H:%i'), memo
+				" SELECT title, DATE_FORMAT(start_time, '%H:%i') AS start_time, memo
 				  FROM group_timetable
 				  WHERE groups_id = $groups_id AND DATE_FORMAT(start_time, '%Y-%m-%d') = CURDATE()
 				  ORDER BY start_time ASC"
@@ -39,7 +39,7 @@
 
 				" SELECT title, importance
 				  FROM notice
-				  WHERE groups_id = '".$groups_id."' "
+				  WHERE groups_id = $groups_id "
 		);
 		print_r(  json_encode( $Crew_DB->callNotice( $resultSet ) ) );
 	}

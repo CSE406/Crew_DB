@@ -178,6 +178,7 @@
 	        while( $rs = mysql_fetch_array( $resultSet ) ){
 	        	
 	            $arrayMiddle = array(
+	           			"id"=>$rs['id'],
 						"name"=>$rs['name'],
 						"label"=>$rs['label']
 	               );

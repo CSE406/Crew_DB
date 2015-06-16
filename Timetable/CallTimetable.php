@@ -15,9 +15,9 @@
 	
 		$resultSet = $Crew_DB->getResultSet( $Crew_DB->getConnection(),
 				
-				" SELECT title, start_time, end_time, day_of_week, color
+				" SELECT title, DATE_FORMAT(start_time, '%H%i') AS start_time, DATE_FORMAT(end_time, '%H%i') AS end_time, day_of_week, color
 				  FROM timetable
-				  WHERE user_id = ".$user_id."
+				  WHERE user_id = $user_id
 				  ORDER BY start_time ASC"
 		);
 		print_r(  json_encode( $Crew_DB->callTimetables( $resultSet ) ) );
