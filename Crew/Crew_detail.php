@@ -18,7 +18,7 @@
 				
 				" SELECT name
 				  FROM groups
-				  WHERE id = '".$groups_id."' "
+				  WHERE id = $groups_id "
 		);
 		print_r(  json_encode( $Crew_DB->callCrewName( $resultSet ) ) );
 	}
